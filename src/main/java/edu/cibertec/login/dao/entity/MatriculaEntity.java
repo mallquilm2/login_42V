@@ -1,11 +1,17 @@
 package edu.cibertec.login.dao.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "matricula")
 public class MatriculaEntity {
 
@@ -25,54 +31,4 @@ public class MatriculaEntity {
 
     private int estado;
 
-    public MatriculaEntity() {
-    }
-
-    public MatriculaEntity(int idMatricula, Date fecMat, UsuarioEntity usuario, CursoEntity curso, int estado) {
-        this.idMatricula = idMatricula;
-        this.fecMat = fecMat;
-        this.usuario = usuario;
-        this.curso = curso;
-        this.estado = estado;
-    }
-
-    public int getIdMatricula() {
-        return idMatricula;
-    }
-
-    public void setIdMatricula(int idMatricula) {
-        this.idMatricula = idMatricula;
-    }
-
-    public Date getFecMat() {
-        return fecMat;
-    }
-
-    public void setFecMat(Date fecMat) {
-        this.fecMat = fecMat;
-    }
-
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
-
-    public CursoEntity getCurso() {
-        return curso;
-    }
-
-    public void setCurso(CursoEntity curso) {
-        this.curso = curso;
-    }
-
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
 }
