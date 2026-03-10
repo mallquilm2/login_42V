@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Matriculas</title>
+</head>
+<body>
+<h1>Matriculas</h1>
+<div>
+    <table class="table">
+        <thead class="table-primary">
+            <tr>
+                <th>Codigo</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Curso</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="matricula : ${listaMatricula}">
+                <td th:text="${matricula.idMatricula}"></td>
+                <td th:text="${#dates.format(matricula.fecMat,'dd/MM/yyyy')}"></td>
+                <td th:text="${matricula.usuario.nombreCompleto}"></td>
+                <td th:text="${matricula.curso.nomCurso}"></td>
+                <td th:text="${matricula.estado}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br/><br/><br/>
+    <div class="container">
+        <div class="col-md-6">
+            <form th:action="@{matriculaGrabar}" method="post">
+                <div class="form-group">
+                    Fecha: <input type="date" name="fechaMat" class="form-controlshadow-none"required placeholder="Fecha"/>
+                </div>
+                <div class="form-group">
+                    Usuario:
+                    <select name="cmbUsuario" class="form-control shadow-none">
+                        <option th:each="user : ${listaUsuarios}" th:value="${user.usuario}" th:text="${user.nombreCompleto}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    Curso:
+                    <select name="cmbCurso" class="form-control shadow-none">
+                        <option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}" th:text="${curso.nomCurso}">
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    Estado:
+                    <input type="radio" name="estado" value="0"/>Inscrito
+                    &nbsp;&nbsp;
+                    <input type="radio" name="estado" value="1"/>Pagado
+                </div>
+                <div class="form-group justify-content-start d-flex pt-3">
+                    <input type="submit" value="Insertar" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sistema de Matriculas</title>
+</head>
+<body>
+<h1 th:text="|Bienvenido |+ ${usuario.nombreCompleto}">Bienvenido</h1>
+<br/><br/><br/>
+<a th:href="@{usuarioListar}">Mantenimiento de Usuarios</a>
+<br/><br/><br/>
+<a th:href="@{cursoMostrar}">Consulta de Cursos</a>
+<br/><br/><br/>
+<a th:href="@{matriculaMostrar}">Mantenimiento de matriculas</a>
+</body>
+</html>

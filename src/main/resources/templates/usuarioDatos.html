@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Primera aplicación con Spring MVC</title>
+        <style type="text/css">
+            .formFieldError{
+                background-color: #FFC;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> Datos del usuario </h1>
+        <br/>
+        <form th:object="${usuarioBean}" th:action="@{usuarioGrabar}" method="post">
+            <table>
+                <tr>
+                    <td> <label for="usuario">Usuario: </label></td>
+                    <td> <input id="usuario" th:field="*{usuario}" th:errorClass="formFieldError" class="form-control text-box"/></td>
+                    <td th:if="${#fields.hasErrors('usuario')}" th:errorClass="formFieldError" th:errors="*{'usuario'}"/></td>
+                </tr>
+                <tr>
+                    <td> <label for="clave">Clave: </label></td>
+                    <td> <input id="clave" th:field="*{clave}" th:errorClass="formFieldError" class="form-control text-box"/></td>
+                    <td th:if="${#fields.hasErrors('clave')}" th:errorClass="formFieldError" th:errors="*{'clave'}"/></td>
+                </tr>
+                <tr>
+                    <td> <label for="nombreCompleto">Nombre Completo: </label></td>
+                    <td> <input id="nombreCompleto" th:field="*{nombreCompleto}" th:errorClass="formFieldError" class="form-control text-box"/></td>
+                    <td th:if="${#fields.hasErrors('nombreCompleto')}" th:errorClass="formFieldError" th:errors="*{'nombreCompleto'}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="1">
+                        <input type="submit" value="Insertar" class="btn btn-primary button-submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
