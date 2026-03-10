@@ -2,24 +2,31 @@ package edu.cibertec.login.controller;
 
 import edu.cibertec.login.service.CursoService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class CursoController {
+
+    Logger logger = LoggerFactory.getLogger(CursoController.class);
 
     @Autowired
     CursoService cursoService;
 
     @RequestMapping("cursoMostrar")
     public String cursoMostrar(){
+        logger.debug("Listando cursos");
         return "cursoBusqueda";
     }
 
     @RequestMapping("cursoBusqueda")
     public ModelAndView cursoBusqueda(HttpServletRequest request){
+        logger.info("Ingresando a cursoBusqueda");
         ModelAndView mv = new ModelAndView("cursoBusqueda");
         String tipoConsulta = request.getParameter("tipo");
         switch (tipoConsulta){
@@ -46,6 +53,7 @@ public class CursoController {
                 mv.addObject("lista", null);
                 break;
         }
+        logger.info("Saliendo de cursoBusqueda");
         return mv;
     }
 
