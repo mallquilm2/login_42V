@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UsuarioController {
@@ -31,6 +34,12 @@ public class UsuarioController {
     public String loginMostrar(){
         logger.info("ingresando a loginMostrar");
         return "login";
+    }
+
+    @RequestMapping("/menu")
+    public ModelAndView menuMostrar(@AuthenticationPrincipal OAuth2User oAuth2User){
+        Map<String,Object> attributes = oAuth2User.getAttributes();
+        return new ModelAndView("menu","usuario",attributes.get("name"));
     }
 
     @RequestMapping(value = "loginAccion")
