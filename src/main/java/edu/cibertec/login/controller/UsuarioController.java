@@ -30,7 +30,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @RequestMapping("loginMostrar")
+    @RequestMapping("/login")
     public String loginMostrar(){
         logger.info("ingresando a loginMostrar");
         return "login";

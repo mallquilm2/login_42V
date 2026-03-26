@@ -24,11 +24,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
        http.csrf(
-               csrf -> csrf.disable().authorizeHttpRequests(auth->auth
-                       .requestMatchers("/","/loginMostrar").permitAll()
-                       .anyRequest().authenticated())
+               csrf -> csrf.disable())
+               .authorizeHttpRequests(auth->auth
+                       .requestMatchers("/","/login","/oauth2/**").permitAll()
+                       .anyRequest().authenticated()
        ).oauth2Login(oauth2 -> oauth2
-               .loginPage("/loginMostrar")
+               .loginPage("/login")
                .defaultSuccessUrl("/menu",true));
        return http.build();
     }
